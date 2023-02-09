@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Fonts\Rubik-Medium.ttf" />
+		<None Remove="Fonts\Rubik-Regular.ttf" />
+		<None Remove="Images\dash_black_50.png" />
+		<None Remove="Images\exit_blue_30.png" />
+		<None Remove="Images\exit_blue_50.png" />
+		<None Remove="Images\exit_red_30.png" />
+		<None Remove="Images\exit_red_50.png" />
+		<None Remove="Images\exit_black_30.png" />
+		<None Remove="Images\gear_black_30.png" />
+		<None Remove="Images\gear_black_50.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Fonts\Rubik-Medium.ttf">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Fonts\Rubik-Regular.ttf">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Content Include="Images\dash_black_50.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\exit_blue_30.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\exit_blue_50.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\exit_red_30.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\exit_red_50.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\exit_black_30.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\gear_black_30.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\gear_black_50.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="ConnectionTester.View.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:ConnectionTester.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="1200" 
+             d:DesignWidth="570"
+             Style="{StaticResource Page_Style}">
+
+    <UserControl.DataContext>
+        <vm:SettingsVM />
+    </UserControl.DataContext>
+
+    <Grid Margin="0,55,0,0">
+        <Border Background="#E2EDFF" CornerRadius="0,0,10,0" />
+        <StackPanel Margin="20,0">
+            <TextBlock  FontSize="20"
+                        FontWeight="Medium"
+                        Text="Settings" />
+            <TextBlock
+            Margin="0,24,0,0"
+            FontSize="20"
+            FontWeight="Medium"
+            Text="About" />
+            <TextBlock Margin="0,12,0,0" Text="{Binding AppVersion, Mode=OneWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

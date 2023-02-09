@@ -1,0 +1,73 @@
+﻿<Window x:Class="ConnectionTester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ConnectionTester.ViewModel"
+        xmlns:nav="clr-namespace:ConnectionTester.Utilities"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="1300" 
+        Width="750"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent">
+    <Window.DataContext>
+        <vm:MainVM />
+    </Window.DataContext>
+    <Grid>
+
+        <!-- Window Application Border - Sets base color -->
+        <Border Background="#3D5A8A"
+                CornerRadius="10" />
+
+        <!-- Main Application Grid -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="76" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Navigation Panel -->
+            <Grid HorizontalAlignment="Left" Width="76">
+                <Border Background="#3D5A8A" CornerRadius="10,0,0,10" />
+                <StackPanel Height="1200" Width="76">
+                    <!-- Dashboard Button -->
+                    <nav:Button Style="{StaticResource NavButton_Style}"
+                                Command="{Binding DashboardCommand}"
+                                IsChecked="True">
+                        <Grid>
+                            <Image Source="Images/dash_black_50.png"
+                                   Style="{StaticResource NavImage_Style}" />
+                            <TextBlock Text="Dashboard"
+                                   Style="{StaticResource NavText_Style}" />
+                        </Grid>
+                    </nav:Button>
+                    <!-- Settings Button -->
+                    <nav:Button Style="{StaticResource NavButton_Style}"
+                                Command="{Binding SettingsCommand}">
+                        <Grid>
+                            <Image Source="Images/gear_black_50.png"
+                                   Style="{StaticResource NavImage_Style}" />
+                            <TextBlock Text="Settings"
+                                       Style="{StaticResource NavText_Style}" />
+                        </Grid>
+                    </nav:Button>
+                </StackPanel>
+            </Grid>
+            <!-- Page Content -->
+            <Grid Grid.Column="1">
+                <ContentControl x:Name="Pages"
+                                Content="{Binding CurrentView}" />
+            </Grid>
+        </Grid>
+        <!-- Application Text -->
+        <TextBlock Text="Connection Tester" 
+                   Style="{StaticResource TitleText_Style}" />
+        <!-- Exit Button -->
+        <Button x:Name="CloseApp"
+                Style="{StaticResource ExitButton}"
+                Click="Exit_Click" />
+    </Grid>
+</Window>

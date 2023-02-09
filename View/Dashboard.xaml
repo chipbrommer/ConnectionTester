@@ -1,0 +1,475 @@
+﻿<UserControl x:Class="ConnectionTester.View.Dashboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:ConnectionTester.ViewModel"
+             xmlns:view="clr-namespace:ConnectionTester.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="1100" 
+             d:DesignWidth="570"
+             Style="{StaticResource Page_Style}">
+    <UserControl.DataContext>
+        <vm:DashboardVM/>
+    </UserControl.DataContext>
+    
+    <!-- Full Content Window --> 
+    <Grid Margin="0,55,0,0">
+        <Border Background="#E2EDFF" CornerRadius="0,0,10,0" />
+        <Grid ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+             <!-- Top Row - Used For Starting Program -->
+            <Grid Grid.ColumnSpan="4" Grid.Row="0">
+                <Button x:Name = "StartButton" 
+                        Style="{StaticResource StartButton_Style}" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="10,10,10,10"
+                        Content="{Binding StartButtonText}"
+                        FontSize="20"
+                        Command="{Binding StartButtonCommand}" >
+                </Button>
+            </Grid>
+            
+            <!-- Middle Row - Used For Test Progress -->
+            <Grid Grid.ColumnSpan="4"  Grid.Row ="1" Grid.RowSpan="3" ShowGridLines="False" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Margin="10,0,10,0" BorderBrush="Gray" BorderThickness="2" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+                <!-- Wave Relay -->
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="15,5,5,0">
+                    <TextBlock x:Name="WaveRelayTitle" Style="{StaticResource SectionTitleText_Style}" Text="Wave Relay" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="0" Grid.Row="0" Margin="15,0,5,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="0" Text="Ethernet"/>
+                    <TextBlock x:Name="wrEthStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="1" Text="{Binding WaveRelayEthernetText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="0" Text="Signal 1"/>
+                    <TextBlock x:Name="wrSignal1Status" Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="1" Text="{Binding WaveRelaySignal1Text}"/>
+                </Grid>
+                <!-- MET -->
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="15,5,5,0">
+                    <TextBlock x:Name="MetTitle" Style="{StaticResource SectionTitleText_Style}" Text="MET" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="0" Grid.Row="1" Margin="15,0,5,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="0" Text="Serial Port"/>
+                    <TextBlock x:Name="metSerialStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="1" Text="{Binding MetSerialText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="0" Text="Signal 1"/>
+                    <TextBlock x:Name="metSignal1Status" Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="1" Text="{Binding MetSignal1Text}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="0" Text="Signal 2"/>
+                    <TextBlock x:Name="metSignal2Status" Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="1" Text="{Binding MetSignal2Text}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="0" Text="Signal 3"/>
+                    <TextBlock x:Name="metSignal3Status" Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="1" Text="{Binding MetSignal3Text}"/>
+                </Grid>
+                <!-- Ethernet -->
+                <StackPanel Grid.Column="0" Grid.Row="2" Margin="15,5,5,0">
+                    <TextBlock x:Name="EthernetTitle" Style="{StaticResource SectionTitleText_Style}" Text="Ethernet" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="0" Grid.Row="2" Margin="15,0,5,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="0" Text="NIC 1"/>
+                    <TextBlock x:Name="eth1Status" Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="1" Text="{Binding EthNic1Text}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="0" Text="NIC 2"/>
+                    <TextBlock x:Name="eth2Status" Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="1" Text="{Binding EthNic2Text}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="0" Text="NIC 3"/>
+                    <TextBlock x:Name="eth3Status" Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="1" Text="{Binding EthNic3Text}"/>
+                </Grid>
+                <!-- Power -->
+                <StackPanel Grid.Column="0" Grid.Row="3" Margin="15,5,5,0">
+                    <TextBlock x:Name="PowerTitle" Style="{StaticResource SectionTitleText_Style}" Text="Power" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="0" Grid.Row="3" Margin="15,0,5,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <!-- Comp 1 -->
+                <StackPanel Grid.Column="1" Grid.Row="0" Margin="5,5,15,0">
+                    <TextBlock x:Name="Comp1Title" Style="{StaticResource SectionTitleText_Style}" Text="Comp 1" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="1" Grid.Row="0" Margin="5,0,15,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="0" Text="Ethernet"/>
+                    <TextBlock x:Name="Comp1EthStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="1" Text="{Binding Comp1EthText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="0" Text="Serial Port"/>
+                    <TextBlock x:Name="Comp1SerialStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="1" Text="{Binding Comp1SerialText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="0" Text="Discrete Outputs"/>
+                    <TextBlock x:Name="Comp1DoStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="1" Text="{Binding Comp1DoText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="0" Text="Discrete inputs"/>
+                    <TextBlock x:Name="Comp1DiStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="1" Text="{Binding Comp1DiText}"/>
+                </Grid>
+                <!-- Comp 2 -->
+                <StackPanel Grid.Column="1" Grid.Row="1" Margin="5,5,15,0">
+                    <TextBlock x:Name="Comp2Title" Style="{StaticResource SectionTitleText_Style}" Text="Comp 2" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="1" Grid.Row="1" Margin="5,0,15,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="0" Text="Ethernet"/>
+                    <TextBlock x:Name="Comp2EthStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="1" Text="{Binding Comp2EthText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="0" Text="Serial Port"/>
+                    <TextBlock x:Name="Comp2SerialStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="1" Text="{Binding Comp2SerialText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="0" Text="Discrete Outputs"/>
+                    <TextBlock x:Name="Comp2DoStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="1" Text="{Binding Comp2DoText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="0" Text="Discrete inputs"/>
+                    <TextBlock x:Name="Comp2DiStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="1" Text="{Binding Comp2DiText}"/>
+                </Grid>
+                <!-- Comp 3 -->
+                <StackPanel Grid.Column="1" Grid.Row="2" Margin="5,5,15,0">
+                    <TextBlock x:Name="Comp3Title" Style="{StaticResource SectionTitleText_Style}" Text="Comp 3" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="1" Grid.Row="2" Margin="5,0,15,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="0" Text="Ethernet"/>
+                    <TextBlock x:Name="Comp3EthStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="1" Text="{Binding Comp3EthText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="0" Text="Serial Port"/>
+                    <TextBlock x:Name="Comp3SerialStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="1" Text="{Binding Comp3SerialText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="0" Text="Discrete Outputs"/>
+                    <TextBlock x:Name="Comp3DoStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="1" Text="{Binding Comp3DoText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="0" Text="Discrete inputs"/>
+                    <TextBlock x:Name="Comp3DiStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="1" Text="{Binding Comp3DiText}"/>
+                </Grid>
+                <!-- Comp 4 -->
+                <StackPanel Grid.Column="1" Grid.Row="3" Margin="5,5,15,0">
+                    <TextBlock x:Name="Comp4Title" Style="{StaticResource SectionTitleText_Style}" Text="Comp 4" />
+                    <Border Margin="0" BorderBrush="Gray" BorderThickness="1"/>
+                </StackPanel>
+                <Grid Grid.Column="1" Grid.Row="3" Margin="5,0,15,0" ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="28"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="0" Text="Ethernet"/>
+                    <TextBlock x:Name="Comp4EthStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="1" Grid.Column="1" Text="{Binding Comp4EthText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="0" Text="Serial Port"/>
+                    <TextBlock x:Name="Comp4SerialStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="2" Grid.Column="1" Text="{Binding Comp4SerialText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="0" Text="Discrete Outputs"/>
+                    <TextBlock x:Name="Comp4DoStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="3" Grid.Column="1" Text="{Binding Comp4DoText}"/>
+                    <TextBlock Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="0" Text="Discrete inputs"/>
+                    <TextBlock x:Name="Comp4DiStatus" Style="{StaticResource SectionItemText_Style}" Grid.Row="4" Grid.Column="1" Text="{Binding Comp4DiText}"/>
+                </Grid>
+            </Grid>
+
+            <!-- Bottom Row - Used For Comp Tabs -->
+            <Grid Grid.ColumnSpan="4" Grid.Row="4">
+                <TabControl Margin="10">
+                    <TabItem x:Name="Comp1" Header="Comp 1" Style="{StaticResource CompTabItem_Style}">
+                        <Grid ShowGridLines="False">
+                            <!-- Sectioning Columns and Rows -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="160"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <!-- Data Connection Section -->
+                            <Grid Grid.Column="0" Grid.Row="0">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Data Connections" />
+                                <DataGrid x:Name="Comp1dc" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp1DCList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Outputs Section -->
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Outputs" />
+                                <DataGrid x:Name="Comp1do" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp1DOList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Inputs Section -->
+                            <Grid Grid.Column="1" Grid.RowSpan="2">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Inputs" />
+                                <DataGrid x:Name="Comp1di" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp1DIList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="Comp2" Header="Comp 2" Style="{StaticResource CompTabItem_Style}">
+                        <Grid ShowGridLines="False">
+                            <!-- Sectioning Columns and Rows -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="160"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <!-- Data Connection Section -->
+                            <Grid Grid.Column="0" Grid.Row="0">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Data Connections" />
+                                <DataGrid x:Name="Comp2dc" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp2DCList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Outputs Section -->
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Outputs" />
+                                <DataGrid x:Name="Comp2do" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp2DOList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Inputs Section -->
+                            <Grid Grid.Column="1" Grid.RowSpan="2">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Inputs" />
+                                <DataGrid x:Name="Comp2di" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp2DIList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="Comp3" Header="Comp 3" Style="{StaticResource CompTabItem_Style}">
+                        <Grid ShowGridLines="False">
+                            <!-- Sectioning Columns and Rows -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="160"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <!-- Data Connection Section -->
+                            <Grid Grid.Column="0" Grid.Row="0">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Data Connections" />
+                                <DataGrid x:Name="Comp3dc" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp3DCList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Outputs Section -->
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Outputs" />
+                                <DataGrid x:Name="Comp3do" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp3DOList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Inputs Section -->
+                            <Grid Grid.Column="1" Grid.RowSpan="2">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Inputs" />
+                                <DataGrid x:Name="Comp3di" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp3DIList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="Comp4" Header="Comp 4" Style="{StaticResource CompTabItem_Style}">
+                        <Grid ShowGridLines="False">
+                            <!-- Sectioning Columns and Rows -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="160"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <!-- Data Connection Section -->
+                            <Grid Grid.Column="0" Grid.Row="0">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Data Connections" />
+                                <DataGrid x:Name="Comp4dc" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp4DCList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Outputs Section -->
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Outputs" />
+                                <DataGrid x:Name="Comp4do" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp4DOList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+
+                            <!-- Discrete Inputs Section -->
+                            <Grid Grid.Column="1" Grid.RowSpan="2">
+                                <TextBlock Style="{StaticResource SectionTitleText_Style}" Margin="5,5,0,0" Text="Discrete Inputs" />
+                                <DataGrid x:Name="Comp4di" AutoGenerateColumns="False" Margin="3,30,3,3" IsReadOnly="True" ItemsSource="{Binding Comp4DIList}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Item" Width="*" Binding="{Binding Path=Name}"/>
+                                        <DataGridTextColumn Header="Output" Width="*" Binding="{Binding Path=Output}"/>
+                                        <DataGridTextColumn Header="Status" Width="*" Binding="{Binding Path=Status}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
