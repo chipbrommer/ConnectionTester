@@ -1,5 +1,4 @@
-﻿using ConnectionTester.Model;
-using ConnectionTester.Utilities;
+﻿using ConnectionTester.Utilities;
 using ConnectionTester.Objects;
 using System;
 using System.Collections.Generic;
@@ -29,7 +28,6 @@ namespace ConnectionTester.ViewModel
         public ObservableCollection<TestItem> Comp4DIList { get; set; }
         public ObservableCollection<TestItem> Comp4DCList { get; set; }
 
-        private readonly PageModel _pageModel;
         private string _StartButtonText,
                         _WaveRelayEthernetText,
                         _WaveRelaySignal1Text,
@@ -185,7 +183,6 @@ namespace ConnectionTester.ViewModel
 
         public DashboardVM()
         {
-            _pageModel              = new PageModel();
             _StartButtonText        = "Start Test";
             _WaveRelayEthernetText  = string.Empty;
             _WaveRelaySignal1Text   = string.Empty;
